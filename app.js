@@ -3,10 +3,6 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 
-app.get("/", function (req, res) {
-  res.sendFile(__dirname + "/app/index.html");
-});
-
 const configNMS = {
   rtmp: {
     port: 1935,
@@ -24,5 +20,6 @@ const configNMS = {
 var nms = new NodeMediaServer(configNMS)
 nms.run();
 
-app.listen(8001);
-console.log("Server running on port 8001");
+app.listen(8001, '0.0.0.0', () => {
+  console.log("Server running on port 8001");
+})
